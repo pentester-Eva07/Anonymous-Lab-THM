@@ -32,7 +32,7 @@ I also discovered encoded information. I used Python to analyse and decode it, w
 
 
 
-**Screenshot 1:** Hidden directory and Python decoding results. Redact any credentials.
+
 
 ## 2. Initial Access and Linux Enumeration
 
@@ -44,7 +44,6 @@ After gaining access, I started enumerating the Linux system, including its file
 
 During this process, I discovered an interesting SUID binary that required further analysis.
 
-**Screenshot 2:** Successful SSH access and SUID binary discovery.
 
 ## 3. Binary Analysis and User Privilege Escalation
 
@@ -69,7 +68,7 @@ I investigated the vulnerability and successfully obtained access as the user `s
 
 **Tools:** `strings`, Radare2
 
-**Screenshot 3:** Relevant binary analysis and successful access as `spooky`.
+
 
 ## 4. Root Privilege Escalation
 
@@ -83,23 +82,27 @@ After gaining access as `spooky`, I inspected `/etc/crontab` and discovered a sc
 
 The wildcard used in the `tar` command created an opportunity for argument injection.
 
-I then discovered a `.webscript` file. It compiled a C source file into an executable, assigned SUID permissions and removed temporary files.
+I further investigated the scheduled task and identified an argument injection vulnerability involving the wildcard in the tar command.
 
-I investigated how the scheduled task could trigger this script. After preparing the required files and allowing the cronjob to run, a root-owned SUID executable was created:
+I examined how the scheduled task could be abused in the lab environment and verified the resulting privilege escalation.
+
+After completing the process, I obtained root-level access and confirmed it using the id command.
 <img width="1920" height="815" alt="Screenshot (466)" src="https://github.com/user-attachments/assets/8aaa3636-6c71-4bb2-a3b2-0f1895513320" />
 <img width="1920" height="1080" alt="Screenshot (467)" src="https://github.com/user-attachments/assets/3946c939-64f2-41a3-b65d-b33d5760964c" />
-<img width="1920" height="810" alt="Screenshot (468)" src="https://github.com/user-attachments/assets/3461c412-1848-4cc6-826f-fbed861f71e4" />
+<img width="1920" height="810" alt="Screenshot (468)" src="https://github.com/user-attachments/assets/eebb4d18-d84c-4477-99fd-1a90bf578be1" />
 
 
 
-`/home/spooky/.cache/.cachefile`
+
+
 
 Executing this binary gave me root privileges. I confirmed the result using the `id` command.
-<img width="1920" height="779" alt="Screenshot (469)" src="https://github.com/user-attachments/assets/618744ef-ba46-4afb-a386-ebe0ccbad626" />
+<img width="1920" height="779" alt="Screenshot (469)" src="https://github.com/user-attachments/assets/7162f97f-0051-4e7a-9c2d-15e777484301" />
 
 
 
-**Screenshot 4:** Cronjob, generated SUID executable and terminal output confirming root access.
+
+
 <img width="1920" height="791" alt="Screenshot (470)" src="https://github.com/user-attachments/assets/33434f5c-9656-44bd-8b0d-df110f56e1f5" />
 
 
@@ -107,6 +110,7 @@ Executing this binary gave me root privileges. I confirmed the result using the 
 ## 5. Conclusion
 
 I successfully completed the Anonymous Playground machine and obtained root-level access.
+The assessment provided practical experience in identifying and analysing vulnerabilities across multiple layers of a Linux-based environment.
 
 During this assessment, I practised:
 
