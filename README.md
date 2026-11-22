@@ -37,10 +37,12 @@ I also discovered encoded information. I used Python to analyse and decode it, w
 ## 2. Initial Access and Linux Enumeration
 
 Using the recovered credentials, I established an SSH connection to the target machine.
-<img width="1920" height="802" alt="Screenshot (452)" src="https://github.com/user-attachments/assets/7e0db683-f6c5-4eee-8a2e-57d131bc3c1e" />
+<img width="1920" height="802" alt="Screenshot (452)" src="https://github.com/user-attachments/assets/ed4e8ebf-76af-4d11-a772-7facf5c34d3f" />
+
 
 After gaining access, I started enumerating the Linux system, including its files, permissions and available binaries.
-<img width="1920" height="824" alt="Screenshot (453)" src="https://github.com/user-attachments/assets/57956157-545c-4523-9b8c-e3f0b7b017a9" />
+<img width="1920" height="824" alt="Screenshot (453)" src="https://github.com/user-attachments/assets/949ddc56-f2f7-46da-a251-8346c7df7c14" />
+
 
 During this process, I discovered an interesting SUID binary that required further analysis.
 
@@ -87,16 +89,10 @@ I further investigated the scheduled task and identified an argument injection v
 I examined how the scheduled task could be abused in the lab environment and verified the resulting privilege escalation.
 
 After completing the process, I obtained root-level access and confirmed it using the id command.
-<img width="1920" height="815" alt="Screenshot (466)" src="https://github.com/user-attachments/assets/8aaa3636-6c71-4bb2-a3b2-0f1895513320" />
-<img width="1920" height="1080" alt="Screenshot (467)" src="https://github.com/user-attachments/assets/3946c939-64f2-41a3-b65d-b33d5760964c" />
+<img width="1920" height="815" alt="Screenshot (466)" src="https://github.com/user-attachments/assets/9675175f-6a77-42ed-a05c-3b69d3089e38" />
+<img width="1920" height="813" alt="Screenshot (467)" src="https://github.com/user-attachments/assets/d36aa59f-b590-4ef6-83fc-d436421d286b" />
 <img width="1920" height="810" alt="Screenshot (468)" src="https://github.com/user-attachments/assets/eebb4d18-d84c-4477-99fd-1a90bf578be1" />
 
-
-
-
-
-
-Executing this binary gave me root privileges. I confirmed the result using the `id` command.
 <img width="1920" height="779" alt="Screenshot (469)" src="https://github.com/user-attachments/assets/7162f97f-0051-4e7a-9c2d-15e777484301" />
 
 
@@ -124,4 +120,3 @@ During this assessment, I practised:
 
 The lab helped me understand how vulnerabilities in applications, binaries and Linux configurations can be combined to escalate privileges.
 
-**Final result:** Root access obtained.
