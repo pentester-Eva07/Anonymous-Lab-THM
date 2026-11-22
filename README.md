@@ -8,7 +8,7 @@
 
 I started by examining the target's web application and its accessible resources.
 
-During enumeration, I inspected `robots.txt` and discovered a hidden directory containing an operative list.
+During enumeration, I inspected `robots.txt` and discovered a hidden directory containing a list of usernames.
 <img width="1920" height="816" alt="Screenshot (439)" src="https://github.com/user-attachments/assets/6322f34a-18ac-438a-a925-469a7b49e8e8" />
 
 I continued investigating the application and encountered a cookie-based restriction.
@@ -82,13 +82,11 @@ After gaining access as `spooky`, I inspected `/etc/crontab` and discovered a sc
 */1 * * * * root cd /home/spooky && tar -zcf /var/backups/spooky.tgz *
 ```
 
-The wildcard used in the `tar` command created an opportunity for argument injection.
+The wildcard in the tar command created an opportunity for argument injection.
 
-I further investigated the scheduled task and identified an argument injection vulnerability involving the wildcard in the tar command.
+I investigated the scheduled task in the lab environment and used this weakness to obtain root-level access.
 
-I examined how the scheduled task could be abused in the lab environment and verified the resulting privilege escalation.
-
-After completing the process, I obtained root-level access and confirmed it using the id command.
+I verified the result using the id command, which confirmed effective root privileges.
 <img width="1920" height="815" alt="Screenshot (466)" src="https://github.com/user-attachments/assets/9675175f-6a77-42ed-a05c-3b69d3089e38" />
 <img width="1920" height="813" alt="Screenshot (467)" src="https://github.com/user-attachments/assets/d36aa59f-b590-4ef6-83fc-d436421d286b" />
 <img width="1920" height="810" alt="Screenshot (468)" src="https://github.com/user-attachments/assets/eebb4d18-d84c-4477-99fd-1a90bf578be1" />
